@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="History" representedClassName="History" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="event" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Limit" representedClassName="Limit" parentEntity="Number" syncable="YES">
+        <relationship name="primes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Prime" inverseName="limits" inverseEntity="Prime" syncable="YES"/>
+    </entity>
+    <entity name="Number" representedClassName="Number" isAbstract="YES" syncable="YES">
+        <attribute name="value" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Prime" representedClassName="Prime" parentEntity="Number" syncable="YES">
+        <relationship name="limits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Limit" inverseName="primes" inverseEntity="Limit" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Limit" positionX="-4869" positionY="-1665" width="128" height="58"/>
+        <element name="History" positionX="-4527" positionY="-1665" width="128" height="73"/>
+        <element name="Prime" positionX="-4691" positionY="-1656" width="128" height="58"/>
+        <element name="Number" positionX="-4772" positionY="-1741" width="128" height="58"/>
+    </elements>
+</model>
