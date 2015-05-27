@@ -7,6 +7,7 @@
 //
 
 #import "HistoryViewController.h"
+#import "HistoryCell.h"
 
 @interface HistoryViewController ()
 
@@ -40,22 +41,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    HistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HistoryCell"];
     
     if(!cell)
         cell =
-        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                               reuseIdentifier:@"cell"];
+        [[[NSBundle mainBundle] loadNibNamed:@"HistoryCell" owner:nil options:nil]
+         objectAtIndex:0];
     
     History *history = [fetchedController.fetchedObjects objectAtIndex:indexPath.row];
-    
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     NSString *dateString = [formatter stringFromDate:history.date];
     
-    cell.textLabel.text =
-    [NSString stringWithFormat:@"%@                %@", history.event, dateString];
+    cell.limitLabel.text = [NSString stringWithFormat:@"%@", history.event];
+    cell.dateLabel.text = dateString;
     
     return cell;
 }
@@ -65,8 +65,6 @@
     
     if([delegate respondsToSelector:@selector(historyViewController:didSelectEvent:)])
         [delegate historyViewController:self didSelectEvent:history.event];
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

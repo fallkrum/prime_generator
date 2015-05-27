@@ -157,6 +157,7 @@
 #pragma mark - HistoryViewController delegate
 - (void)historyViewController:(HistoryViewController *)controller didSelectEvent:(id)event {
     [self displayPrimesForLimit:[event integerValue]];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
