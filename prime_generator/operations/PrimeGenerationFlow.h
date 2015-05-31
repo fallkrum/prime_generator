@@ -13,13 +13,13 @@
 
 @interface PrimeGenerationFlow : NSOperation {
 @private
-    NSManagedObjectContext      *context;
-    PrimeGenerator              *primeGenerator;
-    id                          result;
-    NSInteger                   limit;
+    __weak NSManagedObjectContext       *context;
+    PrimeGenerator                      *primeGenerator;
+    id                                  result;
+    NSInteger                           limit;
 }
 
-@property (nonatomic, readwrite) NSManagedObjectContext *context;
+@property (nonatomic, weak) NSManagedObjectContext *context;
 @property (nonatomic, readonly) id result;
 
 - (id)initWithLimit:(NSInteger)limit;
